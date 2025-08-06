@@ -1,46 +1,563 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog Post</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container my-4 mt-4">
+    <title>Blog - Clinical Guidance System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --dark-bg: #34495e;
+            --text-color: #2c3e50;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
 
-        <h2 class="text-center"> Building the Clinical Guidance System: A Symptom & Location - Based Disease Diagnosis Web App</h2>
-        <p>In today’s world, where quick and accurate health information is essential, we created the "Clinical Guidance System" to help users get health insights instantly. By combining Flask for the backend with a Decision Tree Classifier model, we developed a platform that can assist users in identifying potential illnesses based on their symptoms.</p>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <h3>The Problem</h3>
-        <p>Our project started by addressing a common challenge: many people experience symptoms and need quick, reliable answers about their health. Symptoms can be confusing, especially when they overlap across various conditions. Our goal was to provide users with a convenient way to enter symptoms and receive possible diagnoses.</p>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
 
-        <h3>The Solution</h3>
-        <p>We built a user-friendly web app that lets users enter their symptoms. Using a trained Decision Tree Classifier model, the app predicts the most likely disease. Here’s how it works:</p>
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
 
-        <ol>
-            <li><b><strong>Symptom Input:</strong></b> Users enter symptoms through a simple interface. The app covers a wide range of symptoms, making it versatile for various health scenarios.</li>
-            <li><b><strong>Machine Learning Model:</strong></b> The Decision Tree Classifier model is trained on a large dataset of symptoms and diseases, enabling it to predict diseases based on user input.</li>
-            <li><b><strong>Prediction:</strong></b> The model analyzes the symptoms and provides users with a likely diagnosis, offering quick insights into potential health issues.</li>
-            <li><b><strong>Additional Information: </strong></b> The app also provides comprehensive information on the predicted condition, including descriptions, suggested precautions, medications, dietary advice, and exercise tips.</li>
-        </ol>
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
 
-        <h3>Key Features</h3>
-        <ul>
-            <li><b><strong>User-Friendly Interface:</strong></b> The Clinical Guidance System offers an intuitive interface that allows users to enter symptoms easily.</li>
-            <li><b><strong>Accurate Predictions:</strong></b> Powered by machine learning, the app provides reliable disease predictions based on user symptoms.</li>
-            <li><b><strong>Comprehensive Health Information:</strong></b> Alongside predictions, users receive detailed information about the condition, including guidance on symptoms, precautions, medications, diet, and exercise.</li>
-            <li><b><strong>Educational Resources:</strong></b> To help users learn more about health topics, the platform also offers educational content and blog posts.</li>
-        </ul>
+        .nav-link {
+            font-weight: 500;
+            color: rgba(255,255,255,0.9) !important;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin: 0 2px;
+            padding: 8px 16px !important;
+        }
 
-        <br>
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            color: white !important;
+            transform: translateY(-1px);
+        }
 
-        <h3>Conclusion</h3>
-        <p>The Clinical Guidance System brings healthcare and machine learning together to provide users with fast, accurate health insights. Our platform is designed to make healthcare information more accessible and user-friendly, empowering individuals to take charge of their health.
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
 
-As remote healthcare solutions become increasingly valuable, this project highlights the potential for technology to provide accessible, reliable healthcare information to people everywhere. We hope the Clinical Guidance System will enhance health awareness and contribute to a healthier future.</p>
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid white;
+            transition: var(--transition);
+        }
 
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Container */
+        .content-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin: 40px auto 60px auto;
+            max-width: 1000px;
+            transition: var(--transition);
+        }
+
+        .content-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Article Header */
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--light-bg);
+            position: relative;
+        }
+
+        .article-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .article-title {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-meta {
+            color: #7f8c8d;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 35px 0 20px 0;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* Ordered and Unordered Lists */
+        .content-container ol,
+        .content-container ul {
+            margin: 25px 0;
+            padding-left: 0;
+        }
+
+        .content-container ol li,
+        .content-container ul li {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .content-container ol li {
+            counter-increment: step-counter;
+        }
+
+        .content-container ol {
+            counter-reset: step-counter;
+        }
+
+        .content-container ol li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .content-container ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+        }
+
+        .highlight-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .highlight-title i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(45deg, var(--accent-color), #ec7063);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .cta-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-container {
+                margin: 20px;
+                padding: 25px;
+            }
+            
+            .article-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .section-content {
+                font-size: 1rem;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='LOGO.png') }}" alt="Clinical Guidance System Logo">
+            </div>
+            <a class="navbar-brand ms-3" href="/">
+                <i class="fas fa-heartbeat me-2"></i>Health Center
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="margin-top: 76px;">
+        <div class="container">
+            <h1 class="hero-title floating">
+                <i class="fas fa-blog me-3"></i>Health Blog
+            </h1>
+            <p class="hero-subtitle">
+                Insights • Innovation • Health Technology
+            </p>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-container">
+            <!-- Article Header -->
+            <div class="article-header">
+                <h1 class="article-title">
+                    Building the Clinical Guidance System: A Symptom & Location-Based Disease Diagnosis Web App
+                </h1>
+                <div class="article-meta">
+                    <i class="fas fa-calendar-alt me-2"></i>Published by Development Team
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-clock me-2"></i>5 min read
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <p class="section-content">
+                In today's world, where quick and accurate health information is essential, we created the "Clinical Guidance System" 
+                to help users get health insights instantly. By combining Flask for the backend with a Decision Tree Classifier model, 
+                we developed a platform that can assist users in identifying potential illnesses based on their symptoms.
+            </p>
+
+            <!-- The Problem Section -->
+            <h2 class="section-title">
+                <i class="fas fa-exclamation-triangle me-2"></i>The Problem
+            </h2>
+            <p class="section-content">
+                Our project started by addressing a common challenge: many people experience symptoms and need quick, reliable answers 
+                about their health. Symptoms can be confusing, especially when they overlap across various conditions. Our goal was to 
+                provide users with a convenient way to enter symptoms and receive possible diagnoses.
+            </p>
+
+            <!-- The Solution Section -->
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb me-2"></i>The Solution
+            </h2>
+            <p class="section-content">
+                We built a user-friendly web app that lets users enter their symptoms. Using a trained Decision Tree Classifier model, 
+                the app predicts the most likely disease. Here's how it works:
+            </p>
+
+            <ol>
+                <li><strong>Symptom Input:</strong> Users enter symptoms through a simple interface. The app covers a wide range of symptoms, making it versatile for various health scenarios.</li>
+                <li><strong>Machine Learning Model:</strong> The Decision Tree Classifier model is trained on a large dataset of symptoms and diseases, enabling it to predict diseases based on user input.</li>
+                <li><strong>Prediction:</strong> The model analyzes the symptoms and provides users with a likely diagnosis, offering quick insights into potential health issues.</li>
+                <li><strong>Additional Information:</strong> The app also provides comprehensive information on the predicted condition, including descriptions, suggested precautions, medications, dietary advice, and exercise tips.</li>
+            </ol>
+
+            <!-- Key Features Section -->
+            <h2 class="section-title">
+                <i class="fas fa-star me-2"></i>Key Features
+            </h2>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-desktop feature-icon"></i>
+                    <h3 class="feature-title">User-Friendly Interface</h3>
+                    <p class="feature-description">Intuitive design that allows users to enter symptoms easily and navigate the platform effortlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h3 class="feature-title">Accurate Predictions</h3>
+                    <p class="feature-description">Powered by machine learning, providing reliable disease predictions based on user symptoms.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-info-circle feature-icon"></i>
+                    <h3 class="feature-title">Comprehensive Information</h3>
+                    <p class="feature-description">Detailed guidance on symptoms, precautions, medications, diet, and exercise recommendations.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap feature-icon"></i>
+                    <h3 class="feature-title">Educational Resources</h3>
+                    <p class="feature-description">Educational content and blog posts to help users learn more about health topics.</p>
+                </div>
+            </div>
+
+            <ul>
+                <li><strong>User-Friendly Interface:</strong> The Clinical Guidance System offers an intuitive interface that allows users to enter symptoms easily.</li>
+                <li><strong>Accurate Predictions:</strong> Powered by machine learning, the app provides reliable disease predictions based on user symptoms.</li>
+                <li><strong>Comprehensive Health Information:</strong> Alongside predictions, users receive detailed information about the condition, including guidance on symptoms, precautions, medications, diet, and exercise.</li>
+                <li><strong>Educational Resources:</strong> To help users learn more about health topics, the platform also offers educational content and blog posts.</li>
+            </ul>
+
+            <!-- Technology Stack Highlight -->
+            <div class="highlight-box">
+                <h3 class="highlight-title">
+                    <i class="fas fa-code"></i>Technology Stack
+                </h3>
+                <p>Our system is built using modern web technologies including Flask for the backend, Decision Tree Classifier for machine learning, Bootstrap for responsive design, and a comprehensive dataset for training our AI model.</p>
+            </div>
+
+            <!-- Conclusion Section -->
+            <h2 class="section-title">
+                <i class="fas fa-flag-checkered me-2"></i>Conclusion
+            </h2>
+            <p class="section-content">
+                The Clinical Guidance System brings healthcare and machine learning together to provide users with fast, accurate health insights. 
+                Our platform is designed to make healthcare information more accessible and user-friendly, empowering individuals to take charge of their health.
+            </p>
+            <p class="section-content">
+                As remote healthcare solutions become increasingly valuable, this project highlights the potential for technology to provide 
+                accessible, reliable healthcare information to people everywhere. We hope the Clinical Guidance System will enhance health 
+                awareness and contribute to a brighter and healthier future for everyone.
+            </p>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3 class="cta-title">
+                    <i class="fas fa-rocket me-2"></i>Experience Our Technology
+                </h3>
+                <p class="cta-description">
+                    Ready to try our AI-powered health guidance system? Start your health analysis journey today!
+                </p>
+                <a href="/" class="btn-cta">
+                    <i class="fas fa-arrow-right me-2"></i>Try Our System Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

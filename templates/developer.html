@@ -1,27 +1,611 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Developer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head>
-  <body>
+    <title>Developer Team - Clinical Guidance System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --dark-bg: #34495e;
+            --text-color: #2c3e50;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
 
-  <div class="container my-4 mt-4">
-<h4>About Praveen Kumar & Arun Nivesh: Team 8</h4>
-<p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-    <h5>Meet the Developers</h5>
-        <p>Hello, we are Praveen Kumar and Arun Nivesh, data science students with a shared passion for harnessing the power of technology to make a positive impact on people’s lives. Let us share a bit about our journey and dedication to artificial intelligence and data science.</p>
-    <h5>Our Expertise</h5>
-        <p>With a solid academic background in data science and a deep interest in AI, we have been actively learning and working on projects that push the boundaries of what data science can achieve. Together, we've gained experience in developing models and algorithms that can help solve real-world problems.</p>
-    <h5>A Commitment to Excellence</h5>
-        <p>Our work is driven by a commitment to quality and a belief that technology should be accessible and beneficial to everyone. Whether developing predictive models, designing intelligent algorithms, or creating user-friendly tools, we aim for solutions that are both cutting-edge and user-centered.</p>
-    <h5>Passion for Health Tech</h5>
-        <p>The development of Clinical Guidance System combines our passion for AI with our dedication to making healthcare more accessible. We believe that AI and data science have the potential to transform healthcare by making it more personalized and informative. This platform is a reflection of that vision.</p>
-    <h5>Join Us on this Journey</h5>
-        <p>We invite you to explore health centre and experience firsthand the fusion of data science and healthcare. Together, we can empower individuals with knowledge, promote well-being, and contribute to a brighter and healthier future.</p>
-  </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: rgba(255,255,255,0.9) !important;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin: 0 2px;
+            padding: 8px 16px !important;
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid white;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Container */
+        .content-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin: 40px auto 60px auto;
+            max-width: 1000px;
+            transition: var(--transition);
+        }
+
+        .content-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Team Header */
+        .team-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--light-bg);
+            position: relative;
+        }
+
+        .team-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .team-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .team-title {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .team-description {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 35px 0 20px 0;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        /* Developer Cards */
+        .developer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .developer-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .developer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .developer-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 15px 35px rgba(52, 152, 219, 0.2);
+        }
+
+        .developer-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 700;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .developer-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .developer-role {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .developer-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .developer-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, var(--warning-color), #f7dc6f);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Expertise Cards */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .expertise-card {
+            background: linear-gradient(135deg, #fff3cd 0%, #f8f9fa 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid rgba(243, 156, 18, 0.2);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--warning-color);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.15);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            color: var(--warning-color);
+            margin-bottom: 15px;
+        }
+
+        .expertise-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .expertise-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(45deg, var(--accent-color), #ec7063);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .cta-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-container {
+                margin: 20px;
+                padding: 25px;
+            }
+            
+            .team-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .developer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='LOGO.png') }}" alt="Clinical Guidance System Logo">
+            </div>
+            <a class="navbar-brand ms-3" href="/">
+                <i class="fas fa-heartbeat me-2"></i>Health Center
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="margin-top: 76px;">
+        <div class="container">
+            <h1 class="hero-title floating">
+                <i class="fas fa-code me-3"></i>Meet the Developers
+            </h1>
+            <p class="hero-subtitle">
+                Innovation • Data Science • AI Excellence
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-container">
+            <!-- Team Header -->
+            <div class="team-header">
+                <div class="team-badge">
+                    <i class="fas fa-users me-2"></i>Team 8
+                </div>
+                <h1 class="team-title">
+                    Praveen Kumar & Arun Nivesh
+                </h1>
+                <p class="team-description">
+                    Data science students with a shared passion for harnessing the power of technology to make a positive impact on people's lives.
+                </p>
+            </div>
+
+            <!-- Developer Cards -->
+            <div class="developer-grid">
+                <div class="developer-card">
+                    <div class="developer-avatar">PK</div>
+                    <h3 class="developer-name">Praveen Kumar</h3>
+                    <div class="developer-role">Data Science Student & AI Enthusiast</div>
+                    <p class="developer-description">
+                        Passionate about machine learning and healthcare technology. Focuses on developing intelligent algorithms 
+                        that can solve real-world medical problems and improve patient outcomes.
+                    </p>
+                    <div class="developer-skills">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Healthcare AI</span>
+                        <span class="skill-tag">Data Analytics</span>
+                    </div>
+                </div>
+                
+                <div class="developer-card">
+                    <div class="developer-avatar">AN</div>
+                    <h3 class="developer-name">Arun Nivesh</h3>
+                    <div class="developer-role">Data Science Student & Tech Innovator</div>
+                    <p class="developer-description">
+                        Dedicated to creating user-centered solutions using data science. Specializes in predictive modeling 
+                        and building accessible technology platforms for healthcare applications.
+                    </p>
+                    <div class="developer-skills">
+                        <span class="skill-tag">Data Science</span>
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">AI Models</span>
+                        <span class="skill-tag">UX Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meet the Developers Section -->
+            <h2 class="section-title">
+                <i class="fas fa-handshake me-2"></i>Meet the Developers
+            </h2>
+            <p class="section-content">
+                Hello, we are Praveen Kumar and Arun Nivesh, data science students with a shared passion for harnessing the power of 
+                technology to make a positive impact on people's lives. Let us share a bit about our journey and dedication to 
+                artificial intelligence and data science.
+            </p>
+
+            <!-- Our Expertise Section -->
+            <h2 class="section-title">
+                <i class="fas fa-medal me-2"></i>Our Expertise
+            </h2>
+            <p class="section-content">
+                With a solid academic background in data science and a deep interest in AI, we have been actively learning and working 
+                on projects that push the boundaries of what data science can achieve. Together, we've gained experience in developing 
+                models and algorithms that can help solve real-world problems.
+            </p>
+
+            <!-- Expertise Cards -->
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <i class="fas fa-brain expertise-icon"></i>
+                    <h3 class="expertise-title">Machine Learning</h3>
+                    <p class="expertise-description">Advanced algorithms and predictive modeling for healthcare applications</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <i class="fas fa-chart-line expertise-icon"></i>
+                    <h3 class="expertise-title">Data Analytics</h3>
+                    <p class="expertise-description">Statistical analysis and data visualization for meaningful insights</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <i class="fas fa-laptop-code expertise-icon"></i>
+                    <h3 class="expertise-title">Web Development</h3>
+                    <p class="expertise-description">Full-stack development with modern frameworks and technologies</p>
+                </div>
+                
+                <div class="expertise-card">
+                    <i class="fas fa-user-md expertise-icon"></i>
+                    <h3 class="expertise-title">Healthcare Tech</h3>
+                    <p class="expertise-description">Specialized knowledge in medical data and health information systems</p>
+                </div>
+            </div>
+
+            <!-- Commitment Section -->
+            <h2 class="section-title">
+                <i class="fas fa-star me-2"></i>A Commitment to Excellence
+            </h2>
+            <p class="section-content">
+                Our work is driven by a commitment to quality and a belief that technology should be accessible and beneficial to everyone. 
+                Whether developing predictive models, designing intelligent algorithms, or creating user-friendly tools, we aim for solutions 
+                that are both cutting-edge and user-centered.
+            </p>
+
+            <!-- Passion Section -->
+            <h2 class="section-title">
+                <i class="fas fa-heart me-2"></i>Passion for Health Tech
+            </h2>
+            <p class="section-content">
+                The development of Clinical Guidance System combines our passion for AI with our dedication to making healthcare more accessible. 
+                We believe that AI and data science have the potential to transform healthcare by making it more personalized and informative. 
+                This platform is a reflection of that vision.
+            </p>
+
+            <!-- Join Us Section -->
+            <h2 class="section-title">
+                <i class="fas fa-rocket me-2"></i>Join Us on this Journey
+            </h2>
+            <p class="section-content">
+                We invite you to explore our health center and experience firsthand the fusion of data science and healthcare. Together, 
+                we can empower individuals with knowledge, promote well-being, and contribute to a brighter and healthier future.
+            </p>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3 class="cta-title">
+                    <i class="fas fa-stethoscope me-2"></i>Experience Our Innovation
+                </h3>
+                <p class="cta-description">
+                    Ready to see our Clinical Guidance System in action? Try our AI-powered health analysis platform today!
+                </p>
+                <a href="/" class="btn-cta">
+                    <i class="fas fa-arrow-right me-2"></i>Try Our System Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

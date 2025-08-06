@@ -1,34 +1,435 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container my-4 mt-4">
+    <title>About Us - Clinical Guidance System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --dark-bg: #34495e;
+            --text-color: #2c3e50;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-     <h3> About Us</h3>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-color);
+        }
 
-<p>Welcome to Clinical Guidance System, Where healthcare and technology unite for a brighter, healthier tomorrow..
-</p>
-<h3>Our Vision</h3>
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
 
-    <p>We believe that healthcare information should be available to everyone, not just as a luxury, but as a basic right. Our journey started with one simple idea: to give people the knowledge and tools they need to better manage their health.</p>
-<h3>Who We Are</h3>
-    <p>We are data science students working on a mini project with a shared goal: to make healthcare information more accessible and easier to understand. Even though we are a small team, we have a strong passion for using data and technology to improve healthcare.</p>
-<h3>Our Mission</h3>
-    <p>Our goal is to create a simple, user-friendly platform that uses artificial intelligence to help you understand your health. By entering your symptoms, location, climate, our system predicts potential health issues and provides educational resources to increase your health knowledge.</p>
-<h3>How We Do It</h3>
-    <p>We’ve developed our platform using a machine learning model trained on a large dataset of symptoms, location, climate, medication, precaution and diseases. When you input your symptoms, location, climate, the system predicts possible health concerns, helping you make better decisions about your health.</p>
-<h3>Your Well-being, Our Priority</h3>
-        <p>Your health is our main focus. We understand that healthcare can be complex, which is why we offer not just predictions but also detailed information about each condition. You'll find tips on managing symptoms, medications, precautions, diet, and exercise to support your health journey.</p>
-<h3>Join Us on This Journey</h3>
-    <p>We invite you to explore our platform, learn from our resources, and take control of your health. Together, we can change how people access and understand healthcare information.</p>
-        <p>Thank you for choosing Clinical Guidance System as your trusted health companion. We are here to empower you with knowledge, support, and a healthier future.</p>
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: rgba(255,255,255,0.9) !important;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin: 0 2px;
+            padding: 8px 16px !important;
+        }
+
+        .nav-link:hover {
+            background: rgba(52, 152, 219, 0.2);
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active {
+            background: rgba(52, 152, 219, 0.3);
+            color: white !important;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid white;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Header Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Container */
+        .content-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin: 40px auto 60px auto;
+            max-width: 1000px;
+            transition: var(--transition);
+        }
+
+        .content-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Section Styles */
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--success-color));
+            border-radius: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2.5rem;
+            text-align: justify;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(45deg, var(--secondary-color), #5dade2);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .cta-description {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            background: white;
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content-container {
+                margin: 20px;
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .section-content {
+                font-size: 1rem;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='LOGO.png') }}" alt="Clinical Guidance System Logo">
+            </div>
+            <a class="navbar-brand ms-3" href="/">
+                <i class="fas fa-heartbeat me-2"></i>Health Center
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about"><i class="fas fa-info-circle me-1"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer"><i class="fas fa-code me-1"></i>Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog"><i class="fas fa-blog me-1"></i>Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section" style="margin-top: 76px;">
+        <div class="container">
+            <h1 class="hero-title floating">
+                <i class="fas fa-users me-3"></i>About Us
+            </h1>
+            <p class="hero-subtitle">
+                Discover Our Mission • Meet Our Team • Learn Our Story
+            </p>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-container">
+            <!-- Welcome Section -->
+            <h2 class="section-title">
+                <i class="fas fa-heart me-2"></i>Welcome to Clinical Guidance System
+            </h2>
+            <p class="section-content">
+                Welcome to Clinical Guidance System, where healthcare and technology unite for a brighter, healthier tomorrow. 
+                We believe that everyone deserves access to reliable health information and guidance, empowering individuals 
+                to make informed decisions about their well-being.
+            </p>
+
+            <!-- Vision Section -->
+            <h2 class="section-title">
+                <i class="fas fa-eye me-2"></i>Our Vision
+            </h2>
+            <p class="section-content">
+                We believe that healthcare information should be available to everyone, not just as a luxury, but as a basic right. 
+                Our journey started with one simple idea: to give people the knowledge and tools they need to better manage their health. 
+                We envision a world where technology bridges the gap between medical expertise and everyday health concerns.
+            </p>
+
+            <!-- Who We Are Section -->
+            <h2 class="section-title">
+                <i class="fas fa-user-graduate me-2"></i>Who We Are
+            </h2>
+            <p class="section-content">
+                We are data science students working on a mini project with a shared goal: to make healthcare information more 
+                accessible and easier to understand. Even though we are a small team, we have a strong passion for using data 
+                and technology to improve healthcare outcomes for individuals everywhere.
+            </p>
+
+            <!-- Mission Section -->
+            <h2 class="section-title">
+                <i class="fas fa-bullseye me-2"></i>Our Mission
+            </h2>
+            <p class="section-content">
+                Our goal is to create a simple, user-friendly platform that uses artificial intelligence to help you understand 
+                your health. By entering your symptoms, location, and climate information, our system predicts potential health 
+                issues and provides educational resources to increase your health knowledge and awareness.
+            </p>
+
+            <!-- How We Do It Section -->
+            <h2 class="section-title">
+                <i class="fas fa-cogs me-2"></i>How We Do It
+            </h2>
+            <p class="section-content">
+                We've developed our platform using a machine learning model trained on a large dataset of symptoms, location, 
+                climate, medication, precaution and diseases. When you input your symptoms, location, and climate, the system 
+                predicts possible health concerns, helping you make better decisions about your health journey.
+            </p>
+
+            <!-- Features Grid -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-robot feature-icon"></i>
+                    <h3 class="feature-title">AI-Powered Analysis</h3>
+                    <p class="feature-description">Advanced machine learning algorithms analyze your symptoms for accurate predictions</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Comprehensive Guidance</h3>
+                    <p class="feature-description">Get detailed information about precautions, medications, diet, and exercise</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-user-md feature-icon"></i>
+                    <h3 class="feature-title">Evidence-Based</h3>
+                    <p class="feature-description">All recommendations are based on medical literature and expert knowledge</p>
+                </div>
+            </div>
+
+            <!-- Your Well-being Section -->
+            <h2 class="section-title">
+                <i class="fas fa-heartbeat me-2"></i>Your Well-being, Our Priority
+            </h2>
+            <p class="section-content">
+                Your health is our main focus. We understand that healthcare can be complex, which is why we offer not just 
+                predictions but also detailed information about each condition. You'll find tips on managing symptoms, medications, 
+                precautions, diet, and exercise to support your health journey every step of the way.
+            </p>
+
+            <!-- Join Us Section -->
+            <h2 class="section-title">
+                <i class="fas fa-hands-helping me-2"></i>Join Us on This Journey
+            </h2>
+            <p class="section-content">
+                We invite you to explore our platform, learn from our resources, and take control of your health. Together, 
+                we can change how people access and understand healthcare information. Thank you for choosing Clinical Guidance 
+                System as your trusted health companion. We are here to empower you with knowledge, support, and a healthier future.
+            </p>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3 class="cta-title">
+                    <i class="fas fa-rocket me-2"></i>Ready to Start Your Health Journey?
+                </h3>
+                <p class="cta-description">
+                    Experience our AI-powered health guidance system and take the first step towards better health management.
+                </p>
+                <a href="/" class="btn-cta">
+                    <i class="fas fa-arrow-right me-2"></i>Try Our System Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
