@@ -1,17 +1,10 @@
-# Main build settings
-[build]
-  # Command to install your Python dependencies
-  command = "pip install -r requirements.txt"
-  
-  # Directory where your serverless function handler is located
-  functions = "netlify/functions/"
-  
-  # The directory with your static assets (CSS, JS) to publish.
-  # If you don't have a /static folder, you can set this to "templates/"
-  # or just remove the line if you have no static files to publish directly.
-  publish = "static/"
+# File: netlify.toml
 
-# Redirect rule to send all traffic to your Flask app
+[build]
+  command = "pip install -r requirements.txt"
+  functions = "netlify/functions/"
+  publish = "static/" # Or "templates/" if you prefer
+
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/api/:splat"
