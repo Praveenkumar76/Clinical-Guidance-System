@@ -2,26 +2,34 @@ import pandas as pd
 from flask import Flask, request, render_template
 import logging
 from datetime import datetime
+from pathlib import Path
 
 # --- Basic Setup ---
 app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
-# --- Data Loading ---
-# Load all necessary datasets
-try:
-    description = pd.read_csv("dataset/description.csv")
-    precautions = pd.read_csv("dataset/precautions_df.csv")
-    medications = pd.read_csv('dataset/medications.csv')
-    diets = pd.read_csv("dataset/diets.csv")
-    workout = pd.read_csv("dataset/workout_df.csv")
-    disease_info = pd.read_csv("dataset/disease_info.csv")
-    symptoms_df = pd.read_csv("dataset/symtoms_df.csv")
+# --- Path Setup ---
+# This creates a reliable path to your project's root directory
+BASE_DIR = Path(__file__).resolve().parent
+DATASET_DIR = BASE_DIR / "dataset"
 
-    logging.info("All datasets loaded successfully.")
+# --- Data Loading (THE FIX) ---
+# Load all necessary datasets using absolute paths
+try:
+    description = pd.read_csv(DATASET_DIR / "description.csv")
+    precautions = pd.read_csv(DATASET_DIR / "precautions_df.csv")
+    medications = pd.read_csv(DATASET_DIR / 'medications.csv')
+    diets = pd.read_csv(DATASET_DIR / "diets.csv")
+    workout = pd.read_csv(DATASET_DIR / "workout_df.csv")
+    disease_info = pd.read_csv(DATASET_DIR / "disease_info.csv")
+    symptoms_df = pd.read_csv(DATASET_DIR / "symtoms_df.csv") # Check spelling: "symtoms"
+
+    logging.info("All datasets loaded successfully using absolute paths.")
 except FileNotFoundError as e:
-    logging.error(f"Error loading datasets: {e}. Make sure all CSV files are in the 'dataset' directory.")
-    exit()
+    # We remove exit() so we can see the full error in Netlify logs if it fails
+    logging.error(f"CRITICAL ERROR: Failed to load datasets. {e}")
+    # Re-raise the exception to ensure the function fails visibly in logs
+    raise e
 
 # --- Helper Functions ---
 
