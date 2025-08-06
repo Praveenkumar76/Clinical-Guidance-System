@@ -1,0 +1,42 @@
+Disease,Location,Season
+Fungal infection,All,Monsoon
+Allergy,All,"Spring, Summer, Fall"
+GERD,All,Winter
+Chronic cholestasis,All,All
+Drug Reaction,All,All
+Peptic ulcer diseae,All,All
+AIDS,"Andhra Pradesh, Karnataka, Maharashtra, Tamil Nadu",All
+Diabetes,All,All
+Gastroenteritis,All,Winter
+Bronchial Asthma,All,"Winter, Spring, Summer"
+Hypertension,All,All
+Migraine,All,All
+Cervical spondylosis,All,All
+Paralysis (brain hemorrhage),All,All
+Jaundice,All,Monsoon
+Malaria,All,Monsoon
+Chicken pox,All,"Winter, Spring"
+Dengue,All,Monsoon
+Typhoid,All,"Summer, Monsoon"
+hepatitis A,All,Monsoon
+Hepatitis B,All,All
+Hepatitis C,"Punjab, Haryana, Andhra Pradesh, Mizoram",All
+Hepatitis D,All,All
+Hepatitis E,All,Monsoon
+Alcoholic hepatitis,All,All
+Tuberculosis,All,All
+Common Cold,All,"Winter, Post-Monsoon"
+Pneumonia,All,Winter
+Dimorphic hemmorhoids(piles),All,All
+Heart attack,All,Winter
+Varicose veins,All,All
+Hypothyroidism,All,All
+Hyperthyroidism,All,All
+Hypoglycemia,All,All
+Osteoarthristis,All,Winter
+Arthritis,All,"Winter, Monsoon"
+(vertigo) Paroymsal Positional Vertigo,All,All
+Acne,All,Winter
+Urinary tract infection,All,Summer
+Psoriasis,All,Winter
+Impetigo,All,Summer
