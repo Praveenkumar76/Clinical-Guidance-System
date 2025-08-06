@@ -22,7 +22,7 @@ The Clinical Guidance System is a web-based healthcare application designed to a
 - **Dietary Advice**: Nutritional guidance tailored to specific conditions
 - **Exercise Recommendations**: Physical activity suggestions for recovery and prevention
 
-### User Interface
+### User Interface 
 - **Responsive Design**: Optimized for desktop, tablet, and mobile devices
 - **Modern UI/UX**: Professional interface with intuitive navigation
 - **Interactive Elements**: Hover effects, animations, and smooth transitions
