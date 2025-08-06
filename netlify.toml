@@ -6,6 +6,6 @@
   publish = "static/" # Or "templates/" if you prefer
 
 [[redirects]]
-  from = ""
+  from = "/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
