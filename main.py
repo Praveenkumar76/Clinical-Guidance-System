@@ -22,7 +22,7 @@ try:
     diets = pd.read_csv(DATASET_DIR / "diets.csv")
     workout = pd.read_csv(DATASET_DIR / "workout_df.csv")
     disease_info = pd.read_csv(DATASET_DIR / "disease_info.csv")
-    symptoms_df = pd.read_csv(DATASET_DIR / "symtoms_df.csv") # Check spelling: "symtoms"
+    symptoms_df = pd.read_csv(DATASET_DIR / "symptoms_df.csv") 
 
     logging.info("All datasets loaded successfully using absolute paths.")
 except FileNotFoundError as e:
